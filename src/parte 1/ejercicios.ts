@@ -28,7 +28,7 @@ import { Alumno } from "../parte 2/clase-alumno.js";
 // obtenerNombres(alumnos)
 // -> ["Juan", "María", "Pedro", ...]
 export function obtenerNombres(alumnos: Alumno[]): string[] {
-    return alumnos.map(a => a.nombre)
+  return alumnos.map((a) => a.nombre);
 }
 
 // -----------------------------------------------------------------------------
@@ -69,14 +69,13 @@ export function obtenerAprobados(alumnos: Alumno[]): Alumno[] {
 //
 // Si el arreglo está vacío, devolver 0.
 export function calcularPromedio(alumnos: Alumno[]): number {
-   if (alumnos.length === 0){
-        return 0
-   }
+  if (alumnos.length === 0) {
+    return 0;
+  }
 
-   const totalNotas = alumnos.reduce((acc, alumnos) => acc + alumnos.nota, 0);
+  const totalNotas = alumnos.reduce((acc, alumnos) => acc + alumnos.nota, 0);
 
-   return totalNotas / alumnos.length
-    
+  return totalNotas / alumnos.length;
 }
 
 // -----------------------------------------------------------------------------
@@ -126,7 +125,7 @@ export function buscarPorNombre(
 // Devolver true si existe al menos un alumno con nota menor a 6.
 // Resolver utilizando some.
 export function existeDesaprobado(alumnos: Alumno[]): boolean {
-    return alumnos.some(a => a.nota < 6);
+  return alumnos.some((a) => a.nota < 6);
 }
 
 // -----------------------------------------------------------------------------
@@ -166,8 +165,7 @@ export function obtenerAlumnosDeCiudad(
   alumnos: Alumno[],
   ciudad: string,
 ): Alumno[] {
-    return alumnos.filter(a => a.ciudad === ciudad);
- 
+  return alumnos.filter((a) => a.ciudad === ciudad);
 }
 
 // -----------------------------------------------------------------------------
@@ -233,14 +231,16 @@ export function filtrar<T>(
 // el criterio indicado por el callback.
 //
 // Si ningún elemento cumple, devolver undefined.
-export function buscar<T>(elementos: T[], callback: (elemento: T) => boolean): T | undefined {
-    for (const elemento of elementos) {
-        if (callback(elemento)) {
-            return elemento; 
-        }
+export function buscar<T>(
+  elementos: T[],
+  callback: (elemento: T) => boolean,
+): T | undefined {
+  for (const elemento of elementos) {
+    if (callback(elemento)) {
+      return elemento;
     }
-    return undefined;
-    
+  }
+  return undefined;
 }
 
 // -----------------------------------------------------------------------------
@@ -309,32 +309,19 @@ export function obtenerEstadisticas(alumnos: Alumno[]): Estadisticas {
 // -----------------------------------------------------------------------------
 // Descomentar estas líneas cuando se hayan implementado las funciones.
 //
-// console.log(obtenerNombres(alumnos).slice(0, 10));
+console.log(obtenerNombres(alumnos).slice(0, 10));
 console.log(obtenerNombresCompletos(alumnos).slice(0, 10));
 // console.log(obtenerMayoresDeEdad(alumnos).length);
 // console.log(obtenerAprobados(alumnos).length);
-// console.log(calcularPromedio(alumnos));
+console.log(calcularPromedio(alumnos));
 console.log(obtenerMejorAlumno(alumnos));
 // console.log(buscarPorLegajo(alumnos, 500));
-// console.log(existeDesaprobado(alumnos));
+console.log(existeDesaprobado(alumnos));
 console.log(todosAprobaron(alumnos));
 // console.log(cantidadAprobados(alumnos));
 // console.log(sumarEdades(alumnos));
-// console.log(obtenerAlumnosDeCiudad(alumnos, "Bahía Blanca").length);
-console.log(calcularPromedioPorCiudad(alumnos, "Bahía Blanca"));
-console.log(obtenerNombres(alumnos).slice(0, 10));
-// console.log(obtenerNombresCompletos(alumnos).slice(0, 10));
-// console.log(obtenerMayoresDeEdad(alumnos).length);
-// console.log(obtenerAprobados(alumnos).length);
-console.log(calcularPromedio(alumnos));
-// console.log(obtenerMejorAlumno(alumnos));
-// console.log(buscarPorLegajo(alumnos, 500));
-console.log(existeDesaprobado(alumnos));
-// console.log(todosAprobaron(alumnos));
-// console.log(cantidadAprobados(alumnos));
-// console.log(sumarEdades(alumnos));
 console.log(obtenerAlumnosDeCiudad(alumnos, "Bahía Blanca").length);
-// console.log(calcularPromedioPorCiudad(alumnos, "Bahía Blanca"));
+console.log(calcularPromedioPorCiudad(alumnos, "Bahía Blanca"));
 // console.log(agruparPorCiudad(alumnos));
 // console.log(obtenerEstadisticas(alumnos));
 console.log(calcularTotal(alumnos, (alumno) => alumno.edad));

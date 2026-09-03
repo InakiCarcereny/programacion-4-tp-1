@@ -26,7 +26,7 @@ export class Alumno {
     public email: string;
 
     // EJERCICIO 9: `edad` es privada. Se accede solo con getEdad/setEdad.
-    private edad: number;
+    private edad: number = 0;
 
     // EJERCICIO 10: materias en las que está inscripto el alumno.
     private materias: Materia[] = [];
@@ -38,8 +38,13 @@ export class Alumno {
         edad: number,
         email: string
     ) {
-        // TODO (Ejercicio 8): asignar los atributos recibidos.
-        throw new Error("Implementar");
+        this.legajo = legajo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email
+        this.setEdad(edad);
+
+        
     }
 
     // -------------------------------------------------------------------
@@ -47,13 +52,11 @@ export class Alumno {
     // -------------------------------------------------------------------
 
     getNombreCompleto(): string {
-        // TODO
-        throw new Error("Implementar");
+        return `${this.nombre} ${this.apellido}`;
     }
 
     esMayorDeEdad(): boolean {
-        // TODO
-        throw new Error("Implementar");
+        return this.edad >= 18;
     }
 
     // -------------------------------------------------------------------
@@ -61,15 +64,15 @@ export class Alumno {
     // -------------------------------------------------------------------
 
     getEdad(): number {
-        // TODO
-        throw new Error("Implementar");
+        return this.edad
     }
 
     setEdad(edad: number): void {
-        // TODO: debe impedir edades inválidas.
-        // edad < 0   -> throw new Error(...)
-        // edad > 120 -> throw new Error(...)
-        throw new Error("Implementar");
+        if (edad >= 0 && edad <= 120) {
+            this.edad = edad
+        } else {
+            throw new Error("La edad debe estar entre 0 y 120")
+        }    
     }
 
     // -------------------------------------------------------------------

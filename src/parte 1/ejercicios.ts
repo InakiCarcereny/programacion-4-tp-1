@@ -15,7 +15,8 @@
  * La base contiene 1000 alumnos.
  */
 
-import { alumnos, type Alumno } from "../models/db.ts";
+import { alumnos, type Alumno } from "../models/db.js";
+import { Alumno } from "../parte 2/clase-alumno.js";
 
 // -----------------------------------------------------------------------------
 // EJERCICIO 1 - Obtener nombres
@@ -27,8 +28,7 @@ import { alumnos, type Alumno } from "../models/db.ts";
 // obtenerNombres(alumnos)
 // -> ["Juan", "María", "Pedro", ...]
 export function obtenerNombres(alumnos: Alumno[]): string[] {
-  // TODO
-  throw new Error("Implementar");
+    return alumnos.map(a => a.nombre)
 }
 
 // -----------------------------------------------------------------------------
@@ -69,8 +69,14 @@ export function obtenerAprobados(alumnos: Alumno[]): Alumno[] {
 //
 // Si el arreglo está vacío, devolver 0.
 export function calcularPromedio(alumnos: Alumno[]): number {
-  // TODO
-  throw new Error("Implementar");
+   if (alumnos.length === 0){
+        return 0
+   }
+
+   const totalNotas = alumnos.reduce((acc, alumnos) => acc + alumnos.nota, 0);
+
+   return totalNotas / alumnos.length
+    
 }
 
 // -----------------------------------------------------------------------------
@@ -120,8 +126,7 @@ export function buscarPorNombre(
 // Devolver true si existe al menos un alumno con nota menor a 6.
 // Resolver utilizando some.
 export function existeDesaprobado(alumnos: Alumno[]): boolean {
-  // TODO
-  throw new Error("Implementar");
+    return alumnos.some(a => a.nota < 6);
 }
 
 // -----------------------------------------------------------------------------
@@ -161,8 +166,8 @@ export function obtenerAlumnosDeCiudad(
   alumnos: Alumno[],
   ciudad: string,
 ): Alumno[] {
-  // TODO
-  throw new Error("Implementar");
+    return alumnos.filter(a => a.ciudad === ciudad);
+ 
 }
 
 // -----------------------------------------------------------------------------
@@ -228,12 +233,14 @@ export function filtrar<T>(
 // el criterio indicado por el callback.
 //
 // Si ningún elemento cumple, devolver undefined.
-export function buscar<T>(
-  elementos: T[],
-  callback: (elemento: T) => boolean,
-): T | undefined {
-  // TODO
-  throw new Error("Implementar");
+export function buscar<T>(elementos: T[], callback: (elemento: T) => boolean): T | undefined {
+    for (const elemento of elementos) {
+        if (callback(elemento)) {
+            return elemento; 
+        }
+    }
+    return undefined;
+    
 }
 
 // -----------------------------------------------------------------------------
@@ -315,6 +322,19 @@ console.log(todosAprobaron(alumnos));
 // console.log(sumarEdades(alumnos));
 // console.log(obtenerAlumnosDeCiudad(alumnos, "Bahía Blanca").length);
 console.log(calcularPromedioPorCiudad(alumnos, "Bahía Blanca"));
+console.log(obtenerNombres(alumnos).slice(0, 10));
+// console.log(obtenerNombresCompletos(alumnos).slice(0, 10));
+// console.log(obtenerMayoresDeEdad(alumnos).length);
+// console.log(obtenerAprobados(alumnos).length);
+console.log(calcularPromedio(alumnos));
+// console.log(obtenerMejorAlumno(alumnos));
+// console.log(buscarPorLegajo(alumnos, 500));
+console.log(existeDesaprobado(alumnos));
+// console.log(todosAprobaron(alumnos));
+// console.log(cantidadAprobados(alumnos));
+// console.log(sumarEdades(alumnos));
+console.log(obtenerAlumnosDeCiudad(alumnos, "Bahía Blanca").length);
+// console.log(calcularPromedioPorCiudad(alumnos, "Bahía Blanca"));
 // console.log(agruparPorCiudad(alumnos));
 // console.log(obtenerEstadisticas(alumnos));
 console.log(calcularTotal(alumnos, (alumno) => alumno.edad));

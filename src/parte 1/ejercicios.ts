@@ -57,8 +57,7 @@ export function obtenerMayoresDeEdad(alumnos: Alumno[]): Alumno[] {
 // Un alumno aprueba cuando su nota es mayor o igual a 6.
 // Devolver los alumnos aprobados.
 export function obtenerAprobados(alumnos: Alumno[]): Alumno[] {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.filter((alumno) => alumno.nota >= 6);
 }
 
 // -----------------------------------------------------------------------------
@@ -115,8 +114,7 @@ export function buscarPorNombre(
   alumnos: Alumno[],
   nombre: string,
 ): Alumno | undefined {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.find((alumno) => alumno.nombre === nombre);
 }
 
 // -----------------------------------------------------------------------------
@@ -153,8 +151,7 @@ export function cantidadAprobados(alumnos: Alumno[]): number {
 // Calcular la suma de las edades de todos los alumnos.
 // Resolver utilizando reduce.
 export function sumarEdades(alumnos: Alumno[]): number {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.reduce((total, alumno) => total + alumno.edad, 0);
 }
 
 // -----------------------------------------------------------------------------
@@ -220,8 +217,7 @@ export function filtrar<T>(
   elementos: T[],
   callback: (elemento: T) => boolean,
 ): T[] {
-  // TODO
-  throw new Error("Implementar");
+  return elementos.filter(callback);
 }
 
 // -----------------------------------------------------------------------------
@@ -300,8 +296,26 @@ export interface Estadisticas {
 }
 
 export function obtenerEstadisticas(alumnos: Alumno[]): Estadisticas {
-  // TODO
-  throw new Error("Implementar");
+  const aprobados = obtenerAprobados(alumnos);
+  const cantidadTotal = alumnos.length;
+  const cantidadAprobados = aprobados.length;
+  const cantidadDesaprobados = cantidadTotal - cantidadAprobados;
+
+  const sumaNotas = alumnos.reduce((total, alumno) => total + alumno.nota, 0);
+  const promedio = cantidadTotal > 0 ? sumaNotas / cantidadTotal : 0;
+
+  const mejorAlumno = alumnos.reduce<Alumno | undefined>((mejor, actual) => {
+    if (!mejor || actual.nota > mejor.nota) return actual;
+    return mejor;
+  }, undefined);
+
+  return {
+    cantidadTotal,
+    cantidadAprobados,
+    cantidadDesaprobados,
+    promedio,
+    mejorAlumno,
+  };
 }
 
 // -----------------------------------------------------------------------------

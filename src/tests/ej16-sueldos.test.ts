@@ -5,7 +5,8 @@ import {
     EmpleadoPorHora,
     EmpleadoComision,
     calcularSueldos,
-} from "./ej16-sueldos.js";
+} from "../parte 3/ej16-sueldos.js";
+
 
 describe("Ejercicio 16 - EmpleadoFijo", () => {
     it("cobra el sueldo mensual fijo", () => {

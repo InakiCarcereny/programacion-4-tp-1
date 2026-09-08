@@ -47,8 +47,7 @@ export function obtenerNombresCompletos(alumnos: Alumno[]): string[] {
 // -----------------------------------------------------------------------------
 // Devolver solamente los alumnos que tengan 18 años o más.
 export function obtenerMayoresDeEdad(alumnos: Alumno[]): Alumno[] {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.filter((alumno) => alumno.edad >= 18);
 }
 
 // -----------------------------------------------------------------------------
@@ -102,8 +101,7 @@ export function buscarPorLegajo(
   alumnos: Alumno[],
   legajo: number,
 ): Alumno | undefined {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.find((alumno) => alumno.legajo === legajo);
 }
 
 // -----------------------------------------------------------------------------
@@ -143,8 +141,7 @@ export function todosAprobaron(alumnos: Alumno[]): boolean {
 // Devolver la cantidad de alumnos aprobados.
 // Resolver utilizando filter y length.
 export function cantidadAprobados(alumnos: Alumno[]): number {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.filter((alumno) => alumno.nota >= 6).length;
 }
 
 // -----------------------------------------------------------------------------
@@ -203,8 +200,7 @@ export function transformar<T, R>(
   elementos: T[],
   callback: (elemento: T) => R,
 ): R[] {
-  // TODO
-  throw new Error("Implementar");
+  return elementos.map(callback);
 }
 
 // -----------------------------------------------------------------------------
@@ -275,8 +271,13 @@ export function calcularTotal(
 //
 // Resolver utilizando reduce.
 export function agruparPorCiudad(alumnos: Alumno[]): Record<string, Alumno[]> {
-  // TODO
-  throw new Error("Implementar");
+  return alumnos.reduce((acumulador, alumno) => {
+    if (!acumulador[alumno.ciudad]) {
+      acumulador[alumno.ciudad] = [];
+    }
+    acumulador[alumno.ciudad].push(alumno);
+    return acumulador;
+  }, {} as Record<string, Alumno[]>);
 }
 
 // -----------------------------------------------------------------------------
@@ -309,19 +310,19 @@ export function obtenerEstadisticas(alumnos: Alumno[]): Estadisticas {
 // -----------------------------------------------------------------------------
 // Descomentar estas líneas cuando se hayan implementado las funciones.
 //
-console.log(obtenerNombres(alumnos).slice(0, 10));
-console.log(obtenerNombresCompletos(alumnos).slice(0, 10));
+// console.log(obtenerNombres(alumnos).slice(0, 10));
+// console.log(obtenerNombresCompletos(alumnos).slice(0, 10));
 // console.log(obtenerMayoresDeEdad(alumnos).length);
 // console.log(obtenerAprobados(alumnos).length);
-console.log(calcularPromedio(alumnos));
-console.log(obtenerMejorAlumno(alumnos));
+// console.log(calcularPromedio(alumnos));
+// console.log(obtenerMejorAlumno(alumnos));
 // console.log(buscarPorLegajo(alumnos, 500));
-console.log(existeDesaprobado(alumnos));
-console.log(todosAprobaron(alumnos));
+// console.log(existeDesaprobado(alumnos));
+// console.log(todosAprobaron(alumnos));
 // console.log(cantidadAprobados(alumnos));
 // console.log(sumarEdades(alumnos));
-console.log(obtenerAlumnosDeCiudad(alumnos, "Bahía Blanca").length);
-console.log(calcularPromedioPorCiudad(alumnos, "Bahía Blanca"));
+// console.log(obtenerAlumnosDeCiudad(alumnos, "Bahía Blanca").length);
+// console.log(calcularPromedioPorCiudad(alumnos, "Bahía Blanca"));
 // console.log(agruparPorCiudad(alumnos));
 // console.log(obtenerEstadisticas(alumnos));
-console.log(calcularTotal(alumnos, (alumno) => alumno.edad));
+// console.log(calcularTotal(alumnos, (alumno) => alumno.edad));

@@ -7,62 +7,60 @@
  * `empleados.ts` (Parte 2) — no la reutilices, son ejercicios distintos.
  */
 export abstract class Empleado {
-    constructor(
-        public nombre: string,
-        public apellido: string,
-        public legajo: number
-    ) {}
+  constructor(
+    public nombre: string,
+    public apellido: string,
+    public legajo: number,
+  ) {}
 
-    abstract calcularSueldo(): number;
+  abstract calcularSueldo(): number;
 }
 
 export class EmpleadoFijo extends Empleado {
-    constructor(
-        nombre: string,
-        apellido: string,
-        legajo: number,
-        private sueldoMensual: number
-    ) {
-        super(nombre, apellido, legajo);
-    }
+  constructor(
+    nombre: string,
+    apellido: string,
+    legajo: number,
+    private sueldoMensual: number,
+  ) {
+    super(nombre, apellido, legajo);
+  }
 
-    calcularSueldo(): number {
-        return this.sueldoMensual;
-    }
+  calcularSueldo(): number {
+    return this.sueldoMensual;
+  }
 }
 
 export class EmpleadoPorHora extends Empleado {
-    constructor(
-        nombre: string,
-        apellido: string,
-        legajo: number,
-        private horas: number,
-        private valorHora: number
-    ) {
-        super(nombre, apellido, legajo);
-    }
+  constructor(
+    nombre: string,
+    apellido: string,
+    legajo: number,
+    private horas: number,
+    private valorHora: number,
+  ) {
+    super(nombre, apellido, legajo);
+  }
 
-    calcularSueldo(): number {
-        // TODO: sueldo = horas * valorHora
-        return this.horas * this.valorHora;
-    }
+  calcularSueldo(): number {
+    return this.horas * this.valorHora;
+  }
 }
 
 export class EmpleadoComision extends Empleado {
-    constructor(
-        nombre: string,
-        apellido: string,
-        legajo: number,
-        private ventas: number,
-        private porcentajeComision: number
-    ) {
-        super(nombre, apellido, legajo);
-    }
+  constructor(
+    nombre: string,
+    apellido: string,
+    legajo: number,
+    private ventas: number,
+    private porcentajeComision: number,
+  ) {
+    super(nombre, apellido, legajo);
+  }
 
-    calcularSueldo(): number {
-        // TODO: sueldo = ventas * (porcentajeComision / 100)
-        return this.ventas * (this.porcentajeComision / 100);
-    }
+  calcularSueldo(): number {
+    return this.ventas * (this.porcentajeComision / 100);
+  }
 }
 
 /**
@@ -70,7 +68,5 @@ export class EmpleadoComision extends Empleado {
  * Resolver utilizando reduce.
  */
 export function calcularSueldos(empleados: Empleado[]): number {
-    // TODO
-    return empleados.reduce((acc, e) => acc + e.calcularSueldo(), 0);
-
+  return empleados.reduce((acc, e) => acc + e.calcularSueldo(), 0);
 }
